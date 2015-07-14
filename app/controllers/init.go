@@ -7,4 +7,7 @@ func init() {
 	revel.InterceptMethod((*GorpController).Begin, revel.BEFORE)     // transaction開始
 	revel.InterceptMethod((*GorpController).Commit, revel.AFTER)     // 変更反映
 	revel.InterceptMethod((*GorpController).Rollback, revel.FINALLY) // 異常時処理
+
+	revel.InterceptMethod(App.AddUser, revel.BEFORE)      // ログインユーザーの追加
+	revel.InterceptMethod(Events.checkUser, revel.BEFORE) // ログインの確認
 }
