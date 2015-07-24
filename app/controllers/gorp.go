@@ -14,7 +14,7 @@ var (
 )
 
 func InitDB() {
-	db, err := sql.Open("sqlite3", "./iidaPro/app.db")
+	db, err := sql.Open("sqlite3", "./app.db")
 	if err != nil {
 		panic(err.Error())
 	}

@@ -10,15 +10,28 @@ func (c Api) Index() revel.Result {
 	return c.Render()
 }
 
-type User struct {
-	Name   string `json:"name"`
+type Event struct {
+	Date   string `json:"date"`
+	Event  string `json:"event"`
+	Num    int    `json:"num"`
 	Status int    `json:"status"`
 }
 
-func (c Api) Get(name string, status int) revel.Result {
+func (c Api) Get(num int) revel.Result {
 	// fmt.Println(c.Request.PostFormValue("name"))
 	if c.Request.Method == "GET" {
 		return c.Render()
 	}
-	return c.RenderJson(User{Name: name, Status: status})
+
+	date, event := "", ""
+
+	switch num {
+	case 0:
+		date = "7月25日"
+		event = "中間発表"
+	case 1:
+		date = "7月26日"
+		event = "夏休み"
+	}
+	return c.RenderJson(Event{Date: date, Event: event, Num: num, Status: 200})
 }
